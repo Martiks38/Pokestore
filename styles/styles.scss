@@ -1,0 +1,34 @@
+@use './layout';
+@use './consts/variables' as c;
+
+:root {
+  --color-black: #{c.$color-black};
+  --color-white: #{c.$color-white};
+  --background-main: #{c.$background-main};
+  --background-header-footer: #{c.$background-header-footer};
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: c.$header-height - 16px;
+  margin-left: 2em;
+}

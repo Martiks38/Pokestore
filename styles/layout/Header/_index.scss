@@ -1,0 +1,9 @@
+@use '../../consts/variables';
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: variables.$header-height;
+  background-color: var(--background-header-footer);
+}

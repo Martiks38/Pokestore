@@ -1,0 +1,7 @@
+@use '../../consts/variables';
+
+main {
+  width: 100%;
+  height: variables.$main-height;
+  background-color: var(--background-main);
+}

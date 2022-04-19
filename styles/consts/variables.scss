@@ -1,0 +1,15 @@
+/* Colors */
+$color-black: #000;
+$color-white: #fff;
+$background-main: #202039;
+$background-header-footer: rgb(20, 20, 48);
+
+/* Header */
+$header-height: 48px;
+
+/* Footer */
+$footer-height: 32px;
+
+/* Main */
+
+$main-height: calc(100vh - ($header-height + $footer-height));

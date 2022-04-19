@@ -1,0 +1,11 @@
+@use '../../consts/variables';
+
+.footer {
+  display: flex;
+  width: 100%;
+  height: variables.$footer-height;
+  background-color: var(--background-header-footer);
+  color: var(--color-white);
+  justify-content: center;
+  align-items: center;
+}
