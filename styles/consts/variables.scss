@@ -1,6 +1,7 @@
 /* Colors */
 $color-black: #000;
-$color-white: #fff;
+$color-grey: #222;
+$color-white: #fafafa;
 $background-main: #202039;
 $background-header-footer: rgb(20, 20, 48);
 
@@ -8,8 +9,11 @@ $background-header-footer: rgb(20, 20, 48);
 $header-height: 48px;
 
 /* Footer */
-$footer-height: 32px;
+$footer-height: 128px;
 
 /* Main */
-
 $main-height: calc(100vh - ($header-height + $footer-height));
+
+/* Miscelanea */
+$top-image-form: 2em;
+$number-cards-home: 6;

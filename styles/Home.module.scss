@@ -1,0 +1,34 @@
+@use './consts/variables';
+
+.container {
+  max-width: 800px;
+  min-width: 300px;
+  height: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0 2em;
+  padding: 2em 2em 1em;
+}
+
+.title {
+  padding-top: variables.$top-image-form;
+  margin-top: 0;
+  color: #c1ff00;
+}
+
+.search {
+  text-align: center;
+}
+
+.cards {
+  position: relative;
+}

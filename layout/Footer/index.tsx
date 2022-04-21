@@ -1,10 +1,10 @@
 function Footer() {
   return (
     <footer className="footer">
-      <span>
+      <em className="footer__notice">
         This website is not produced, endorsed, supported, or affiliated with
         Nintendo or The Pokémon Company.
-      </span>
+      </em>
     </footer>
   )
 }

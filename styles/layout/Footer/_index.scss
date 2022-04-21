@@ -8,4 +8,10 @@
   color: var(--color-white);
   justify-content: center;
   align-items: center;
+  padding: 0 1.5em;
+
+  &__notice {
+    width: 450px;
+    text-align: center;
+  }
 }

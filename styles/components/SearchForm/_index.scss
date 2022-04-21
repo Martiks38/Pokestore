@@ -1,0 +1,30 @@
+.form__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form__lens {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  left: 16px;
+}
+
+.form-search__input {
+  width: 100%;
+  padding: 0.6em;
+  padding-left: 50px;
+  height: 100%;
+  background-color: #1e1e1e;
+  border: 2px solid #a48d0a;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: var(--color-white);
+
+  &:focus {
+    border: 2px solid #ffd700;
+    outline: none;
+  }
+}

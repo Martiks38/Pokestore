@@ -1,0 +1,87 @@
+@use '../../consts/variables';
+
+.cards__card {
+  position: absolute;
+  -webkit-filter: drop-shadow(4px 8px 8px var(--color-grey));
+  filter: drop-shadow(4px 8px 8px var(--color-grey));
+
+  @for $ind from 0 through variables.$number-cards-home {
+    &_#{$ind} {
+      z-index: $ind;
+    }
+  }
+
+  &_1 {
+    top: 20px;
+    left: 120px;
+  }
+
+  &_2 {
+    top: 65px;
+    left: 320px;
+  }
+
+  &_3 {
+    top: 100px;
+    left: 20px;
+  }
+
+  &_4 {
+    top: 65px;
+    left: 600px;
+  }
+
+  &_5 {
+    top: 40px;
+    left: 480px;
+  }
+
+  &_6 {
+    top: 140px;
+    left: 220px;
+  }
+
+  &:hover {
+    z-index: variables.$number-cards-home + 1;
+
+    -webkit-animation-name: moveUpward;
+    animation-name: moveUpward;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-direction: normal;
+    animation-direction: normal;
+  }
+}
+
+@-webkit-keyframes moveUpward {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 5px);
+  }
+}
+
+@keyframes moveUpward {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 5px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .cards__card:hover {
+    -webkit-animation-name: none;
+    animation-name: none;
+  }
+}
