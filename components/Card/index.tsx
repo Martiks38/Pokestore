@@ -1,28 +1,24 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 function Card({
   alt,
   id,
+  loading,
   src,
   style,
+  styleCard,
 }: {
   alt: string
   id: string
+  loading?: 'eager' | 'lazy'
   src: string
-  style: string
+  style?: string
+  styleCard?: string
 }) {
   return (
     <Link href={`/#`}>
       <a className={style}>
-        <Image
-          src={src}
-          alt={alt}
-          // Small card size 245x342
-          width={245}
-          height={342}
-          layout="intrinsic"
-        />
+        <img src={src} alt={alt} loading={loading} className={styleCard} />
       </a>
     </Link>
   )

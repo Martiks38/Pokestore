@@ -1,6 +1,30 @@
+import { defaultSearch } from 'consts/configUrl'
+import { objURL } from 'interface'
+import { useRouter } from 'next/router'
+import { memo, useEffect } from 'react'
+import { FormEvent } from 'react'
+
 function SearchForm() {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.prefetch('/search')
+  }, [router])
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const name = event.currentTarget.search.value
+
+    const search: objURL = name
+      ? { pathname: '/search/cards', query: { name } }
+      : defaultSearch
+
+    event.preventDefault()
+
+    router.push(search, undefined, { shallow: true })
+  }
+
   return (
-    <form onSubmit={() => console.log('Hi')}>
+    <form onSubmit={handleSubmit}>
       <label className="form__search">
         <span className="form__lens">
           <svg
@@ -29,4 +53,4 @@ function SearchForm() {
   )
 }
 
-export default SearchForm
+export default memo(SearchForm)
