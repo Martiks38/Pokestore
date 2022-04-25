@@ -1,0 +1,99 @@
+@use '../../consts/variables';
+
+.cardsHome {
+  position: relative;
+  width: 100%;
+
+  &__card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+
+    -webkit-filter: drop-shadow(4px 8px 8px var(--color-grey));
+    filter: drop-shadow(4px 8px 8px var(--color-grey));
+
+    @for $ind from 0 through variables.$number-cards-home {
+      &_#{$ind} {
+        z-index: $ind;
+      }
+    }
+
+    &_1 {
+      bottom: -360px;
+      left: -545px;
+    }
+
+    &_2 {
+      bottom: -430px;
+      left: -200px;
+    }
+
+    &_3 {
+      bottom: -535px;
+      left: -295px;
+    }
+
+    &_4 {
+      bottom: -380px;
+      right: -150px;
+    }
+
+    &_5 {
+      bottom: -400px;
+      right: -520px;
+    }
+
+    &_6 {
+      bottom: -480px;
+      right: -365px;
+    }
+
+    &:hover {
+      z-index: variables.$number-cards-home + 1;
+
+      -webkit-animation-name: moveUpward;
+      animation-name: moveUpward;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-direction: normal;
+      animation-direction: normal;
+    }
+  }
+}
+
+@-webkit-keyframes moveUpward {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 5px);
+  }
+}
+
+@keyframes moveUpward {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 5px);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .cardsHome__card:hover {
+    -webkit-animation-name: none;
+    animation-name: none;
+  }
+}
