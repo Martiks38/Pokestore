@@ -9,10 +9,12 @@ $background-header-footer: rgb(20, 20, 48);
 $header-height: 48px;
 
 /* Footer */
-$footer-height: 128px;
+// $footer-height: 128px;
+$footer-height-1200: 80px;
 
 /* Main */
-$main-height: calc(100vh - ($header-height + $footer-height));
+$main-height: calc(100vh - ($header-height + $footer-height-1200));
+$padding-top: 2em;
 
 /* Miscelanea */
 $top-image-form: 2em;

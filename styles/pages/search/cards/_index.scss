@@ -1,0 +1,24 @@
+.resultsSearch {
+  display: grid;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em 2em 3em;
+
+  &__form {
+    max-width: 300px;
+    margin-bottom: 2em;
+    @media (max-width: 651px) {
+      & {
+        justify-self: center;
+      }
+    }
+  }
+
+  &__results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: center;
+    gap: 1.5em;
+  }
+}
