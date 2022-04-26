@@ -7,6 +7,7 @@ import Card from 'components/Card'
 import { apiUrl } from 'consts/configUrl'
 import { typeHover } from 'consts/cardType'
 import NavPanelBtn from 'components/NavPanelBtn'
+import getCards from 'services/getCards'
 
 const pageSize = 30
 
@@ -54,23 +55,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { number } = params
 
   const paramsV2 = `?page=${number}&pageSize=${pageSize}`
-  const POKEMONTCG_API_KEY = process.env.POKEMON_API_KEY // Your private api key
-
   const url = `${apiUrl}/cards/${paramsV2}`
 
-  const config: axios.AxiosRequestConfig = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-
-  if (POKEMONTCG_API_KEY) {
-    config.headers['X-Api-Key'] = POKEMONTCG_API_KEY
-  }
-
-  const res = await axios.default.get<any>(url, config)
-
-  const cards = await res.data.data
+  const cards = await Promise.resolve(getCards(url))
 
   return {
     props: {

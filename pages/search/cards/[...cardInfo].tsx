@@ -7,6 +7,7 @@ import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
+import getCards from 'services/getCards'
 
 const pageSize = 25 // Number of cards per page
 
@@ -14,7 +15,7 @@ export default function SearchCardName(props: { cards: PokemonTCG.Card[] }) {
   const { cards } = props
 
   if (useRouter().isFallback) return <h1>Loading...</h1>
-  console.log(cards[0])
+
   return (
     <div className="resultsSearch">
       <div className="resultsSearch__form">
@@ -70,24 +71,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const [name, page] = context.params.cardInfo
   const numberPage = page ?? 1
 
-  const POKEMONTCG_API_KEY = process.env.POKEMON_API_KEY // Your private api key
   const paramsV2 = `?q=name:${name}&page=${numberPage}&pageSize=${pageSize}`
-
   const url = `${apiUrl}/cards${paramsV2}`
 
-  const config: axios.AxiosRequestConfig = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-
-  if (POKEMONTCG_API_KEY) {
-    config.headers['X-Api-Key'] = POKEMONTCG_API_KEY
-  }
-
-  const res = await axios.default.get<any>(url, config)
-
-  const cards = await res.data.data
+  const cards = await Promise.resolve(getCards(url))
 
   return {
     props: {
