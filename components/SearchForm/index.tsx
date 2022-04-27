@@ -12,15 +12,15 @@ function SearchForm() {
   }, [router])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const name = event.currentTarget.search.value
+    const name = event.currentTarget.search.value as string
 
-    const search: objURL = name
-      ? { pathname: '/search/cards', query: { name } }
+    const search: objURL = name.toLowerCase()
+      ? { pathname: `/search/cards/${name}/1` }
       : defaultSearch
 
     event.preventDefault()
 
-    router.push(search, undefined, { shallow: true })
+    router.push(search, undefined, { shallow: false })
   }
 
   return (
