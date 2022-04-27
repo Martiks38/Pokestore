@@ -14,8 +14,8 @@
 .cardInfo {
   display: grid;
   width: inherit;
-  padding: 0 1.5rem;
-  min-height: calc(variables.$main-height - variables.$padding-top);
+  padding: 1rem 1.5rem;
+  min-height: variables.$main-height;
   grid-template-columns: 445px 1fr;
   gap: 4em;
 
