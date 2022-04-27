@@ -1,4 +1,4 @@
-import Card from 'components/Card'
+import CardItem from 'components/CardItem'
 import NavPanelBtn from 'components/NavPanelBtn'
 import SearchForm from 'components/SearchForm'
 import { typeHover } from 'consts/cardType'
@@ -6,6 +6,7 @@ import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
+import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
 
 const pageSize = 25 // Number of cards per page
@@ -22,10 +23,11 @@ export default function SearchCardName(props: { cards: PokemonTCG.Card[] }) {
       </div>
       <div className="resultsSearch__results">
         {cards.map((card, index) => (
-          <Card
+          <CardItem
             key={card.id}
             alt={card.name}
             loading={index < 10 ? 'eager' : 'lazy'}
+            price={getCardPrice(card, 'USD')}
             route={`/search/card/${
               encodeURI(card.name) + '-' + encodeURI(card.set.name)
             }/${card.id}`}

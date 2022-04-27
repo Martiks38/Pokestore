@@ -1,27 +1,17 @@
 import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
+import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
-import { typeCard } from 'types/typeCard'
 
 function CardInfo(props: { card: PokemonTCG.Card }) {
   const { card } = props
 
-  let priceCard
+  if (useRouter().isFallback) <h1>Loading...</h1>
 
-  if (card) {
-    const prices = card.tcgplayer.prices
-
-    const typeCard = Object.keys(prices)[0] as typeCard
-
-    priceCard = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(prices[typeCard].market)
-  }
-
-  console.log(card)
+  const priceCard = getCardPrice(card, 'USD')
 
   return (
     <>

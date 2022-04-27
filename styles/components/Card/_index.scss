@@ -2,7 +2,9 @@
 
 .card {
   width: 100%;
-  height: auto;
+  height: 275px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 @each $type, $color in list.$listTypes {

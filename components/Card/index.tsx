@@ -1,23 +1,10 @@
 import Link from 'next/link'
+import { cardData } from 'types/cardData'
 
-function Card({
-  alt,
-  loading,
-  route,
-  src,
-  style,
-  styleCard,
-}: {
-  alt: string
-  loading?: 'eager' | 'lazy'
-  route: string
-  src: string
-  style?: string
-  styleCard?: string
-}) {
+function Card({ alt, loading, route, src, styleCard }: cardData) {
   return (
     <Link href={route}>
-      <a className={style}>
+      <a>
         <img src={src} alt={alt} loading={loading} className={styleCard} />
       </a>
     </Link>

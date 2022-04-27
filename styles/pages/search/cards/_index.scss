@@ -3,11 +3,11 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 1em 2em 3em;
+  padding: 1rem 2rem 3rem;
 
   &__form {
     max-width: 300px;
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
     @media (max-width: 651px) {
       & {
         justify-self: center;
@@ -19,6 +19,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 200px);
     justify-content: center;
-    gap: 1.5em;
+    gap: 2rem;
   }
 }

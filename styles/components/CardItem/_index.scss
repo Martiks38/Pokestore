@@ -1,0 +1,79 @@
+.cardItemWrapper {
+  position: relative;
+  width: 200px;
+  height: 275px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+
+  &__price {
+    position: absolute;
+    right: 0;
+    padding: 0.5rem;
+    background-color: rgb(33, 33, 33);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    font-size: 1.2rem;
+    border-bottom-left-radius: 6px;
+    letter-spacing: 0.8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  &__panelBtn {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(22, 22, 22, 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    .cardItemWrapper__price {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .cardItemWrapper__panelBtn {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.panelBtn__btn {
+  font-size: 1rem;
+  flex: 1 1;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem 0.4rem;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.divider {
+  height: 26px;
+  width: 2px;
+  background-color: var(--color-white);
+}
+
+@supports not (
+  ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)))
+) {
+  .cardItemWrapper__price {
+    background-color: rgba(22, 22, 22, 1);
+  }
+}
