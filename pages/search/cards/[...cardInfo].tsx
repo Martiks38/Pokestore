@@ -26,7 +26,7 @@ export default function SearchCardName(props: { cards: PokemonTCG.Card[] }) {
             key={card.id}
             alt={card.name}
             loading={index < 10 ? 'eager' : 'lazy'}
-            route={`search/card/${
+            route={`/search/card/${
               encodeURI(card.name) + '-' + encodeURI(card.set.name)
             }/${card.id}`}
             src={card.images.small}

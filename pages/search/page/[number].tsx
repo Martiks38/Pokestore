@@ -26,9 +26,9 @@ export default function SearchPage(props: { cards: PokemonTCG.Card[] }) {
             key={card.id}
             alt={card.name}
             loading={index < 10 ? 'eager' : 'lazy'}
-            route={`search/card/${
+            route={`/search/card/${
               encodeURI(card.name) + '-' + encodeURI(card.set.name)
-            }/${card.name}`}
+            }/${card.id}`}
             src={card.images.small}
             style={
               card.supertype === 'Pokémon'
