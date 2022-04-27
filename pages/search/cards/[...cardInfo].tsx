@@ -1,4 +1,3 @@
-import * as axios from 'axios'
 import Card from 'components/Card'
 import NavPanelBtn from 'components/NavPanelBtn'
 import SearchForm from 'components/SearchForm'
@@ -26,9 +25,11 @@ export default function SearchCardName(props: { cards: PokemonTCG.Card[] }) {
           <Card
             key={card.id}
             alt={card.name}
-            id={card.id}
-            src={card.images.small}
             loading={index < 10 ? 'eager' : 'lazy'}
+            route={`search/card/${
+              encodeURI(card.name) + '-' + encodeURI(card.set.name)
+            }/${card.id}`}
+            src={card.images.small}
             style={
               card.supertype === 'Pokémon'
                 ? typeHover.Pokemon[card.types[0]]

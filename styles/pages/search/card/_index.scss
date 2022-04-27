@@ -76,6 +76,22 @@
     }
   }
 
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0 1.2rem;
+    @media (max-width: 945px) {
+      & {
+        justify-content: center;
+      }
+    }
+  }
+
+  &__type {
+    width: auto;
+    height: 2rem;
+  }
+
   &__title {
     margin-top: 0;
     margin-bottom: 0.2rem;

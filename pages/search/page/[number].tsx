@@ -1,4 +1,3 @@
-import * as axios from 'axios'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
@@ -26,8 +25,10 @@ export default function SearchPage(props: { cards: PokemonTCG.Card[] }) {
           <Card
             key={card.id}
             alt={card.name}
-            id={card.id}
             loading={index < 10 ? 'eager' : 'lazy'}
+            route={`search/card/${
+              encodeURI(card.name) + '-' + encodeURI(card.set.name)
+            }/${card.name}`}
             src={card.images.small}
             style={
               card.supertype === 'Pokémon'

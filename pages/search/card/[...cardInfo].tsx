@@ -1,5 +1,6 @@
 import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
 import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
 import getCards from 'services/getCards'
 import { typeCard } from 'types/typeCard'
@@ -20,6 +21,8 @@ function CardInfo(props: { card: PokemonTCG.Card }) {
     }).format(prices[typeCard].market)
   }
 
+  console.log(card)
+
   return (
     <>
       {card && (
@@ -33,21 +36,34 @@ function CardInfo(props: { card: PokemonTCG.Card }) {
           </figure>
           <article className="cardInfo__description">
             <section className="description__section">
-              <h1 className="description__title">{card.name}</h1>
+              <span className="description__header">
+                <h1 className="description__title">{card.name}</h1>
+                {card.types && (
+                  <span className="description__type">
+                    <Image
+                      src={`/${card.types[0]}.webp`}
+                      alt={card.types[0]}
+                      width={32}
+                      height={32}
+                      layout="fixed"
+                      priority
+                    />
+                  </span>
+                )}
+              </span>
               <h2 className="description__subtitle">
                 {card.supertype} - {card.subtypes.join(' ')}
               </h2>
             </section>
             <div className="partingLine"></div>
             <section className="description__section">
-              <h3 className="description__principal">
-                {card.rules.length > 1 ? 'Rules' : 'Rule'}
-              </h3>
-              {card.rules.map((rule, index) => (
-                <p key={`${card.id}-${index}`} className="description__text">
-                  {rule}
-                </p>
-              ))}
+              {card.rules && <h3 className="description__principal">Rules</h3>}
+              {card.rules &&
+                card.rules.map((rule, index) => (
+                  <p key={`${card.id}-${index}`} className="description__text">
+                    {rule}
+                  </p>
+                ))}
               <h3 className="description__principal">Rarity</h3>
               <span className="description__text">{card.rarity}</span>
             </section>

@@ -2,21 +2,21 @@ import Link from 'next/link'
 
 function Card({
   alt,
-  id,
   loading,
+  route,
   src,
   style,
   styleCard,
 }: {
   alt: string
-  id: string
   loading?: 'eager' | 'lazy'
+  route: string
   src: string
   style?: string
   styleCard?: string
 }) {
   return (
-    <Link href={`/#`}>
+    <Link href={route}>
       <a className={style}>
         <img src={src} alt={alt} loading={loading} className={styleCard} />
       </a>
