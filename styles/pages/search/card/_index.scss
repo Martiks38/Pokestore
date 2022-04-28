@@ -17,7 +17,7 @@
   padding: 1rem 1.5rem;
   min-height: variables.$main-height;
   grid-template-columns: 445px 1fr;
-  gap: 4em;
+  gap: 4rem;
 
   &__imgContainer {
     margin: 0;
@@ -37,16 +37,40 @@
     flex-direction: column;
     justify-content: space-evenly;
     color: var(--color-white);
+
+    &_fewInformation {
+      padding: 86px 0;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      gap: 2rem 0;
+    }
+  }
+
+  &_fewInformation {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 945px) {
     & {
       grid-template-columns: 345px 1fr;
+
+      &_fewInformation {
+        grid-template-columns: 1fr;
+      }
+
       &__card {
-        width: -webkit-max-content;
-        width: -moz-max-content;
-        max-width: 245px;
+        padding-top: 2rem;
+        max-width: 300px;
         height: auto;
+      }
+
+      &__description_fewInformation {
+        text-align: center;
+        justify-self: center;
+        max-width: 600px;
+        padding-top: 0;
+        padding-bottom: 2rem;
       }
     }
   }
@@ -56,6 +80,15 @@
       grid-template-columns: 1fr;
       grid-template-rows: -webkit-min-content 550px;
       grid-template-rows: min-content 550px;
+
+      &__card {
+        width: 100%;
+      }
+
+      &_fewInformation {
+        grid-template-rows: repeat(2, -webkit-min-content);
+        grid-template-rows: repeat(2, min-content);
+      }
 
       &__description {
         text-align: center;
@@ -69,6 +102,7 @@
 .description {
   &__section {
     padding: 0 3rem;
+
     @media (max-width: 375px) {
       & {
         padding: 0 1rem;
@@ -78,9 +112,17 @@
 
   &__header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0 1.2rem;
+
     @media (max-width: 945px) {
+      & {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 840px) {
       & {
         justify-content: center;
       }

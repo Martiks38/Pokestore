@@ -1,10 +1,10 @@
-import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
-import { CardV2 } from 'types/cardMarket'
+import { apiUrl } from 'consts/configUrl'
+import { CardV2 } from 'interface/cardMarket'
 
 function CardInfo(props: { card: CardV2 }) {
   const { card } = props
@@ -16,15 +16,31 @@ function CardInfo(props: { card: CardV2 }) {
   return (
     <>
       {card && (
-        <div className="cardInfo">
+        <div
+          className={
+            card.rules || card.rarity
+              ? 'cardInfo'
+              : 'cardInfo cardInfo_fewInformation'
+          }
+        >
           <figure className="cardInfo__imgContainer">
             <img
               src={card.images.small}
               alt={card.name}
-              className="cardInfo__card"
+              className={
+                card.rules || card.rarity
+                  ? 'cardInfo__card'
+                  : 'cardInfo__card cardInfo__card_fewInformation'
+              }
             />
           </figure>
-          <article className="cardInfo__description">
+          <article
+            className={
+              card.rules || card.rarity
+                ? 'cardInfo__description'
+                : 'cardInfo__description cardInfo__description_fewInformation'
+            }
+          >
             <section className="description__section">
               <span className="description__header">
                 <h1 className="description__title">{card.name}</h1>
@@ -45,26 +61,47 @@ function CardInfo(props: { card: CardV2 }) {
                 {card.supertype} - {card.subtypes.join(' ')}
               </h2>
             </section>
-            <div className="partingLine"></div>
-            <section className="description__section">
-              {card.rules && <h3 className="description__principal">Rules</h3>}
-              {card.rules &&
-                card.rules.map((rule, index) => (
-                  <p key={`${card.id}-${index}`} className="description__text">
-                    {rule}
-                  </p>
-                ))}
-              <h3 className="description__principal">Rarity</h3>
-              <span className="description__text">{card.rarity}</span>
-            </section>
-            <div className="partingLine"></div>
+            {(card.rarity || card.rules) && (
+              <>
+                <div className="partingLine"></div>
+                <section className="description__section">
+                  {card.rules && (
+                    <>
+                      <h3 className="description__principal">Rules</h3>
+                      {card.rules.map((rule, index) => (
+                        <p
+                          key={`${card.id}-${index}`}
+                          className="description__text"
+                        >
+                          {rule}
+                        </p>
+                      ))}
+                    </>
+                  )}
+                  <h3 className="description__principal">Rarity</h3>
+                  <span className="description__text">{card.rarity}</span>
+                </section>
+              </>
+            )}
+            <div
+              className={
+                card.rules || card.rarity
+                  ? 'partingLine'
+                  : 'partingLine partingLine_fewInformation'
+              }
+            ></div>
             <section className="description__section">
               <h3 className="description__principal">Price</h3>
-              <h4 className="description__priceUpdate">
-                Last Updated {card.tcgplayer.updatedAt}
-              </h4>
+              {priceCard.includes('$') && (
+                <h4 className="description__priceUpdate">
+                  Last Updated{' '}
+                  {card.tcgplayer.updatedAt ?? card.cardmarket.updatedAt}
+                </h4>
+              )}
               <span className="description__price">{priceCard}</span>
-              <button className="buyButton">ADD TO CART</button>
+              {priceCard.includes('$') && (
+                <button className="buyButton">ADD TO CART</button>
+              )}
             </section>
           </article>
         </div>

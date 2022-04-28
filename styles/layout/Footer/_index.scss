@@ -14,4 +14,9 @@
     width: 450px;
     text-align: center;
   }
+
+  @media (max-width: 350px) {
+    transition: height 0.2s ease;
+    height: 128px;
+  }
 }

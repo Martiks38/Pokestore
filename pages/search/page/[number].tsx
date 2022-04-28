@@ -8,7 +8,7 @@ import NavPanelBtn from 'components/NavPanelBtn'
 import getCards from 'services/getCards'
 import getCardPrice from 'services/getCardPrice'
 import CardItem from 'components/CardItem'
-import { CardV2 } from 'types/cardMarket'
+import { CardV2 } from 'interface/cardMarket'
 import { useCallback, useEffect, useState } from 'react'
 
 const pageSize = 30
