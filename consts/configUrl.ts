@@ -1,5 +1,3 @@
-import { objURL } from 'interface'
-
 /* URL */
 const API_URL: string = 'https://api.pokemontcg.io'
 const API_VERSION: string = '2'
@@ -12,6 +10,6 @@ const page = 1 + Math.floor(Math.random() * 50)
 export const paramsHome = `?page=${page}&pageSize=${pageSize}`
 
 /* Default Search */
-export const defaultSearch: objURL = {
+export const defaultSearch = {
   pathname: '/search/page/1',
 }

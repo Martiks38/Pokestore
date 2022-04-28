@@ -14,7 +14,9 @@ function CardsInHome() {
           <Card
             key={card.id}
             alt={card.name}
-            id={card.id}
+            route={`/search/card/${
+              encodeURI(card.name) + '-' + encodeURI(card.set.name)
+            }/${card.id}`}
             src={card.images.small}
             style={`cardsHome__card cardsHome__card_${index + 1}`}
           />

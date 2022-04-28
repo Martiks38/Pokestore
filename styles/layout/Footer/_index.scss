@@ -3,7 +3,7 @@
 .footer {
   display: flex;
   width: 100%;
-  height: variables.$footer-height;
+  height: variables.$footer-height-1200;
   background-color: var(--background-header-footer);
   color: var(--color-white);
   justify-content: center;
@@ -13,5 +13,10 @@
   &__notice {
     width: 450px;
     text-align: center;
+  }
+
+  @media (max-width: 350px) {
+    transition: height 0.2s ease;
+    height: 128px;
   }
 }

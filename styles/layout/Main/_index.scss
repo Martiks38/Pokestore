@@ -2,7 +2,6 @@
 
 main {
   width: 100%;
-  height: 100%;
-  padding-top: 2em;
+  min-height: variables.$main-height;
   background-color: var(--background-main);
 }

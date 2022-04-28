@@ -1,33 +1,55 @@
-import * as axios from 'axios'
-import Card from 'components/Card'
+import CardItem from 'components/CardItem'
 import NavPanelBtn from 'components/NavPanelBtn'
 import SearchForm from 'components/SearchForm'
 import { typeHover } from 'consts/cardType'
 import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
+import getCardPrice from 'services/getCardPrice'
+import getCards from 'services/getCards'
+import { CardV2 } from 'interface/cardMarket'
+import { useCallback, useEffect, useState } from 'react'
 
 const pageSize = 25 // Number of cards per page
 
-export default function SearchCardName(props: { cards: PokemonTCG.Card[] }) {
+export default function SearchCardName(props: { cards: CardV2[] }) {
+  const [viewSearch, setViewSearch] = useState(false)
+
   const { cards } = props
 
+  const handleViewSearch = useCallback(() => {
+    const isNarrow = window.innerWidth < 550
+
+    isNarrow ? setViewSearch(true) : setViewSearch(false)
+  }, [])
+
+  useEffect(() => {
+    handleViewSearch()
+
+    window.addEventListener('resize', handleViewSearch)
+
+    return () => window.removeEventListener('resize', handleViewSearch)
+  }, [handleViewSearch])
+
   if (useRouter().isFallback) return <h1>Loading...</h1>
-  console.log(cards[0])
   return (
     <div className="resultsSearch">
-      <div className="resultsSearch__form">
-        <SearchForm />
-      </div>
+      {viewSearch && (
+        <div className="resultsSearch__form">
+          <SearchForm />
+        </div>
+      )}
       <div className="resultsSearch__results">
         {cards.map((card, index) => (
-          <Card
+          <CardItem
             key={card.id}
             alt={card.name}
-            id={card.id}
-            src={card.images.small}
             loading={index < 10 ? 'eager' : 'lazy'}
+            price={getCardPrice(card, 'USD')}
+            route={`/search/card/${
+              encodeURI(card.name) + '-' + encodeURI(card.set.name)
+            }/${card.id}`}
+            src={card.images.small}
             style={
               card.supertype === 'Pokémon'
                 ? typeHover.Pokemon[card.types[0]]
@@ -70,24 +92,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const [name, page] = context.params.cardInfo
   const numberPage = page ?? 1
 
-  const POKEMONTCG_API_KEY = process.env.POKEMON_API_KEY // Your private api key
   const paramsV2 = `?q=name:${name}&page=${numberPage}&pageSize=${pageSize}`
-
   const url = `${apiUrl}/cards${paramsV2}`
 
-  const config: axios.AxiosRequestConfig = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-
-  if (POKEMONTCG_API_KEY) {
-    config.headers['X-Api-Key'] = POKEMONTCG_API_KEY
-  }
-
-  const res = await axios.default.get<any>(url, config)
-
-  const cards = await res.data.data
+  const cards = await Promise.resolve(getCards(url))
 
   return {
     props: {
