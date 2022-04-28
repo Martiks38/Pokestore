@@ -1,5 +1,6 @@
 import Card from 'components/Card'
 import { cardDisplay } from 'interface/cardData'
+import Link from 'next/link'
 
 function CardItem({
   alt,
@@ -21,12 +22,9 @@ function CardItem({
         styleCard={styleCard}
       />
       <div className="cardItemWrapper__panelBtn">
-        <button
-          className="panelBtnCard__btn"
-          onClick={() => console.log('Ver más')}
-        >
-          See more
-        </button>
+        <Link href={route}>
+          <a className="panelBtnCard__btn">See more</a>
+        </Link>
         <div className="divider"></div>
         <button
           disabled={!price.includes('$')}
