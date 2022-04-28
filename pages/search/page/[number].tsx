@@ -8,19 +8,39 @@ import NavPanelBtn from 'components/NavPanelBtn'
 import getCards from 'services/getCards'
 import getCardPrice from 'services/getCardPrice'
 import CardItem from 'components/CardItem'
+import { CardV2 } from 'types/cardMarket'
+import { useCallback, useEffect, useState } from 'react'
 
 const pageSize = 30
 
-export default function SearchPage(props: { cards: PokemonTCG.Card[] }) {
+export default function SearchPage(props: { cards: CardV2[] }) {
+  const [viewSearch, setViewSearch] = useState(false)
+
   const { cards } = props
+
+  const handleViewSearch = useCallback(() => {
+    const isNarrow = window.innerWidth < 550
+
+    isNarrow ? setViewSearch(true) : setViewSearch(false)
+  }, [])
+
+  useEffect(() => {
+    handleViewSearch()
+
+    window.addEventListener('resize', handleViewSearch)
+
+    return () => window.removeEventListener('resize', handleViewSearch)
+  }, [handleViewSearch])
 
   if (useRouter().isFallback) return <h1>Loading...</h1>
 
   return (
     <div className="resultsSearch">
-      <div className="resultsSearch__form">
-        <SearchForm />
-      </div>
+      {viewSearch && (
+        <div className="resultsSearch__form">
+          <SearchForm />
+        </div>
+      )}
       <div className="resultsSearch__results">
         {cards.map((card, index) => (
           <CardItem

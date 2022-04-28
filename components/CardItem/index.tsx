@@ -1,5 +1,5 @@
 import Card from 'components/Card'
-import { cardDisplay } from 'types/cardData'
+import { cardDisplay } from 'interface/cardData'
 
 function CardItem({
   alt,
@@ -22,14 +22,15 @@ function CardItem({
       />
       <div className="cardItemWrapper__panelBtn">
         <button
-          className="panelBtn__btn"
+          className="panelBtnCard__btn"
           onClick={() => console.log('Ver más')}
         >
           See more
         </button>
         <div className="divider"></div>
         <button
-          className="panelBtn__btn"
+          disabled={!price.includes('$')}
+          className="panelBtnCard__btn"
           onClick={() => console.log('Añadir al carrito')}
         >
           <svg width="20" height="20" focusable="false" viewBox="0 0 12 12">

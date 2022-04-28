@@ -1,10 +1,9 @@
 import { defaultSearch } from 'consts/configUrl'
-import { objURL } from 'interface'
 import { useRouter } from 'next/router'
 import { memo, useEffect } from 'react'
 import { FormEvent } from 'react'
 
-function SearchForm() {
+function SearchForm({ inHeader }: { inHeader?: boolean }) {
   const router = useRouter()
 
   useEffect(() => {
@@ -14,25 +13,27 @@ function SearchForm() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const name = event.currentTarget.search.value as string
 
-    const search: objURL = name.toLowerCase()
+    const search = name.toLowerCase()
       ? { pathname: `/search/cards/${name}/1` }
       : defaultSearch
 
     event.preventDefault()
-
+    event.currentTarget.search.value = ''
     router.push(search, undefined, { shallow: false })
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label className="form__search">
-        <span className="form__lens">
+        <span
+          className={inHeader ? 'form__lens form__lens_inHeader' : 'form__lens'}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
-            width="24"
-            height="24"
+            width={inHeader ? '18' : '24'}
+            height={inHeader ? '18' : '24'}
             viewBox="0 0 24 24"
             fill="#f0f0f0"
           >
@@ -41,7 +42,11 @@ function SearchForm() {
           </svg>
         </span>
         <input
-          className="form-search__input"
+          className={
+            inHeader
+              ? 'form-search__input form-search__input_inHeader'
+              : 'form-search__input'
+          }
           type="search"
           name="search"
           placeholder="Search for a card"

@@ -8,20 +8,24 @@
   position: absolute;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 100%;
   left: 16px;
 }
 
 .form-search__input {
   width: 100%;
-  padding: 0.6em;
-  padding-left: 50px;
+  padding: 0.6rem 0.6rem 0.6rem 50px;
   height: 100%;
   background-color: #1e1e1e;
   border: 2px solid #a48d0a;
   border-radius: 8px;
   font-size: 1.1rem;
   color: var(--color-white);
+
+  &_inHeader {
+    padding: 0.4rem 0.4rem 0.4rem 50px;
+    font-size: 1rem;
+  }
 
   &:focus {
     border: 2px solid #ffd700;

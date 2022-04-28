@@ -2,11 +2,11 @@ import { apiUrl } from 'consts/configUrl'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
 import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
+import { CardV2 } from 'types/cardMarket'
 
-function CardInfo(props: { card: PokemonTCG.Card }) {
+function CardInfo(props: { card: CardV2 }) {
   const { card } = props
 
   if (useRouter().isFallback) <h1>Loading...</h1>
