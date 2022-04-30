@@ -13,7 +13,7 @@ export function shoppingReducer(
 ) {
   switch (action.type) {
     case TYPES.INIT_STORED: {
-      return action.payload.prevState
+      return action.payload.prevState ?? shoppingInitialCart
     }
 
     case TYPES.ADD_TO_CART: {
