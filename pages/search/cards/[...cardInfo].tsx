@@ -1,14 +1,14 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useState } from 'react'
 import CardItem from 'components/CardItem'
 import NavPanelBtn from 'components/NavPanelBtn'
 import SearchForm from 'components/SearchForm'
-import { typeHover } from 'consts/cardType'
-import { apiUrl } from 'consts/configUrl'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
+import { typeHover } from 'consts/cardType'
+import { apiUrl } from 'consts/configUrl'
 import { CardV2 } from 'interface/cardMarket'
-import { useCallback, useEffect, useState } from 'react'
 
 const pageSize = 25 // Number of cards per page
 
@@ -44,6 +44,7 @@ export default function SearchCardName(props: { cards: CardV2[] }) {
           <CardItem
             key={card.id}
             alt={card.name}
+            id={card.id}
             loading={index < 10 ? 'eager' : 'lazy'}
             price={getCardPrice(card, 'USD')}
             route={`/search/card/${

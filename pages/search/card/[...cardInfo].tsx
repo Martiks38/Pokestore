@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import useShopping from 'hooks/useShopping'
 import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
 import { apiUrl } from 'consts/configUrl'
@@ -8,6 +9,8 @@ import { CardV2 } from 'interface/cardMarket'
 
 function CardInfo(props: { card: CardV2 }) {
   const { card } = props
+
+  const { addToCart } = useShopping()
 
   if (useRouter().isFallback) <h1>Loading...</h1>
 
@@ -83,13 +86,7 @@ function CardInfo(props: { card: CardV2 }) {
                 </section>
               </>
             )}
-            <div
-              className={
-                card.rules || card.rarity
-                  ? 'partingLine'
-                  : 'partingLine partingLine_fewInformation'
-              }
-            ></div>
+            <div className="partingLine"></div>
             <section className="description__section">
               <h3 className="description__principal">Price</h3>
               {priceCard.includes('$') && (
@@ -100,7 +97,19 @@ function CardInfo(props: { card: CardV2 }) {
               )}
               <span className="description__price">{priceCard}</span>
               {priceCard.includes('$') && (
-                <button className="buyButton">ADD TO CART</button>
+                <button
+                  className="buyButton"
+                  onClick={() =>
+                    addToCart({
+                      alt: card.name,
+                      id: card.id,
+                      price: priceCard,
+                      src: card.images.small,
+                    })
+                  }
+                >
+                  ADD TO CART
+                </button>
               )}
             </section>
           </article>

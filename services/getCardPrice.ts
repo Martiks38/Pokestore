@@ -1,4 +1,4 @@
-import { CardV2 } from 'types/cardMarket'
+import { CardV2 } from 'interface/cardMarket'
 import { typeCard } from 'types/typeCard'
 
 const getCardPrice = (card: CardV2, currency: string) => {

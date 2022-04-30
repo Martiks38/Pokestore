@@ -1,4 +1,4 @@
-export interface cardData {
+export interface CardData {
   alt: string
   loading?: 'eager' | 'lazy'
   route: string
@@ -7,7 +7,7 @@ export interface cardData {
   styleCard?: string
 }
 
-export interface cardDisplay extends cardData {
+export interface CardDisplay extends CardData {
+  id: string
   price: string
-  style: string
 }

@@ -1,16 +1,22 @@
 import Card from 'components/Card'
-import { cardDisplay } from 'interface/cardData'
+import useShopping from 'hooks/useShopping'
+import { CardDisplay } from 'interface/cardData'
 import Link from 'next/link'
 
 function CardItem({
   alt,
+  id,
   loading,
   price,
   route,
   src,
   style,
   styleCard,
-}: cardDisplay) {
+}: CardDisplay) {
+  const { addToCart } = useShopping()
+
+  const { state } = useShopping()
+
   return (
     <div className={`cardItemWrapper ${style}`}>
       <span className="cardItemWrapper__price">{price}</span>
@@ -29,7 +35,9 @@ function CardItem({
         <button
           disabled={!price.includes('$')}
           className="panelBtnCard__btn"
-          onClick={() => console.log('Añadir al carrito')}
+          onClick={() => {
+            addToCart({ alt, id, price, src })
+          }}
         >
           <svg width="20" height="20" focusable="false" viewBox="0 0 12 12">
             <path
