@@ -1,15 +1,14 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
+import { useCallback, useEffect, useState } from 'react'
+import CardItem from 'components/CardItem'
+import NavPanelBtn from 'components/NavPanelBtn'
 import SearchForm from 'components/SearchForm'
+import getCardPrice from 'services/getCardPrice'
+import getCards from 'services/getCards'
 import { apiUrl } from 'consts/configUrl'
 import { typeHover } from 'consts/cardType'
-import NavPanelBtn from 'components/NavPanelBtn'
-import getCards from 'services/getCards'
-import getCardPrice from 'services/getCardPrice'
-import CardItem from 'components/CardItem'
 import { CardV2 } from 'interface/cardMarket'
-import { useCallback, useEffect, useState } from 'react'
 
 const pageSize = 30
 
@@ -46,6 +45,7 @@ export default function SearchPage(props: { cards: CardV2[] }) {
           <CardItem
             key={card.id}
             alt={card.name}
+            id={card.id}
             loading={index < 10 ? 'eager' : 'lazy'}
             price={getCardPrice(card, 'USD')}
             route={`/search/card/${
