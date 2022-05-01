@@ -92,3 +92,45 @@
     object-fit: contain;
   }
 }
+
+.userMenu {
+  position: absolute;
+  top: calc(variables.$header-height - 2px);
+  right: 20px;
+  width: 200px;
+  height: auto;
+  padding: 1rem 0.4rem;
+  background-color: rgb(20, 20, 67);
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+  &__item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.4rem;
+    background-color: transparent;
+    border-style: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(21, 99, 201);
+    }
+  }
+
+  @media (max-width: 350px) {
+    & {
+      top: variables.$header-height;
+      right: 0;
+      width: 100%;
+      padding: 1rem 1rem;
+      border-radius: 0;
+      box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

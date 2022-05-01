@@ -6,6 +6,17 @@ import SearchForm from 'components/SearchForm'
 
 function Header() {
   const [viewSearchHeader, setviewSearchHeader] = useState(false)
+  const [viewUserMenu, setViewUserMenu] = useState(false)
+  const { state, toggleLog } = useShopping()
+
+  const numberItems = state.products.reduce(
+    (prevValue, currentValue) => {
+      return {
+        quantity: prevValue.quantity + currentValue.quantity,
+      }
+    },
+    { quantity: 0 }
+  ).quantity
 
   const handleViewSearchHeader = useCallback(() => {
     const isNarrow = window.innerWidth < 550
@@ -23,6 +34,10 @@ function Header() {
     return
   }, [])
 
+  const handleToggleUserMenu = () => {
+    setViewUserMenu(!viewUserMenu)
+  }
+
   useEffect(() => {
     handleViewSearchHeader()
 
@@ -31,17 +46,6 @@ function Header() {
     return () => window.removeEventListener('resize', handleViewSearchHeader)
   }, [handleViewSearchHeader])
 
-  const { state } = useShopping()
-
-  const numberItems = state.products.reduce(
-    (prevValue, currentValue) => {
-      return {
-        quantity: prevValue.quantity + currentValue.quantity,
-      }
-    },
-    { quantity: 0 }
-  ).quantity
-
   return (
     <header className="header">
       <Link href="/">
@@ -49,7 +53,7 @@ function Header() {
           <Image
             src="/eevee.webp"
             alt="pokeshop"
-            layout="intrinsic"
+            layout="fixed"
             width={32}
             height={32}
           />
@@ -85,9 +89,28 @@ function Header() {
               </span>
             )}
           </button>
-          <button className="userIcon">
-            <img src="/userIcon.webp" alt="" className="userIcon__img" />
+          <button className="userIcon" onClick={handleToggleUserMenu}>
+            <img
+              src="/userIcon.webp"
+              alt="profile image"
+              className="userIcon__img"
+            />
           </button>
+          {viewUserMenu && (
+            <div className="userMenu">
+              {state.isConnected ? (
+                <Link href="/login">
+                  <a className="userMenu__item" onClick={handleToggleUserMenu}>
+                    Log In
+                  </a>
+                </Link>
+              ) : (
+                <button className="userMenu__item" onClick={toggleLog}>
+                  Log Out
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </header>

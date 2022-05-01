@@ -15,8 +15,6 @@ function CardItem({
 }: CardDisplay) {
   const { addToCart } = useShopping()
 
-  const { state } = useShopping()
-
   return (
     <div className={`cardItemWrapper ${style}`}>
       <span className="cardItemWrapper__price">{price}</span>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { cardData } from 'interface/cardData'
+import { CardData } from 'interface/cardData'
 
-function Card({ alt, loading, route, src, style, styleCard }: cardData) {
+function Card({ alt, loading, route, src, style, styleCard }: CardData) {
   return (
     <Link href={route}>
       <a className={style}>
