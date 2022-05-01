@@ -27,7 +27,7 @@ export function shoppingReducer(
               ? { ...product, quantity: product.quantity + 1 }
               : product
           )
-        : [...state.products, { ...action.payload, quantity: 1 }]
+        : [...state.products, { ...action.payload.cardItem, quantity: 1 }]
 
       return {
         ...state,
