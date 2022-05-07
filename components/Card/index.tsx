@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { memo } from 'react'
 import { CardData } from 'interface/cardData'
 
 function Card({ alt, loading, route, src, style, styleCard }: CardData) {
@@ -11,4 +12,4 @@ function Card({ alt, loading, route, src, style, styleCard }: CardData) {
   )
 }
 
-export default Card
+export default memo(Card)

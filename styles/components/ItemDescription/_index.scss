@@ -1,0 +1,117 @@
+.fig__img {
+  position: absolute;
+  left: 20px;
+  top: -25px;
+  width: 245px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: 0% -10px;
+  object-position: 0% -10px;
+  -webkit-clip-path: polygon(22px 25px, 22px 90px, 223px 90px, 223px 25px);
+  clip-path: polygon(22px 25px, 22px 90px, 223px 90px, 223px 25px);
+}
+
+.fig__name {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  padding-left: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background-image: linear-gradient(
+    to right,
+    rgb(44, 44, 44),
+    rgb(44, 44, 44) 60px,
+    rgba(44, 44, 44, 0.95) 40%,
+    rgba(44, 44, 44, 0.6) 65%,
+    transparent
+  );
+}
+
+.item {
+  display: grid;
+  grid-template-areas:
+    'img price quantity'
+    'remove remove quantity';
+  grid-template-columns: 242px 100px 80px;
+  grid-template-rows: 60px 45px;
+  gap: 1px;
+
+  &__fig {
+    position: relative;
+    grid-area: img;
+    margin: 0;
+    overflow: hidden;
+    outline: rgba(198, 192, 200, 0.1) solid 1px;
+  }
+
+  &__price {
+    display: grid;
+    grid-area: price;
+    place-content: center;
+    outline: rgba(198, 192, 200, 0.1) solid 1px;
+
+    color: var(--color-white);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__quantity {
+    display: grid;
+    grid-area: quantity;
+    place-content: center;
+    outline: rgba(198, 192, 200, 0.1) solid 1px;
+
+    color: var(--color-white);
+    font-size: 3rem;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  &__remove {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    grid-area: remove;
+    outline: rgba(198, 192, 200, 0.1) solid 1px;
+  }
+}
+
+.removeBtn {
+  background-color: transparent;
+  border-style: none;
+  color: var(--color-white);
+  font-size: 1.1rem;
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.wrapperItems {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  min-width: 245px;
+  padding: 2rem 2rem 3rem;
+  margin: 0 auto 2rem;
+  border: rgb(35, 56, 79) solid 1px;
+  border-radius: 6px;
+  background: linear-gradient(
+    to top,
+    rgb(35, 56, 79) 30%,
+    rgba(35, 56, 79, 0.7) 80%,
+    rgba(35, 56, 79, 0.35) 90%,
+    transparent
+  );
+
+  &__noProducts {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}

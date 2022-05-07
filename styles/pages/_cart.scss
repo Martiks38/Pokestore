@@ -1,0 +1,134 @@
+@use '../consts/variables';
+
+.containerCenter {
+  width: 100%;
+  min-height: variables.$main-height;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+.cartTitle {
+  margin-top: 0;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.estimatedPrice {
+  display: flex;
+  justify-content: space-between;
+  max-width: 446px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: var(--color-white);
+
+  &_center {
+    justify-content: center;
+  }
+
+  &__buy {
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: rgb(25, 54, 85);
+    padding: 0.5rem 1.4rem;
+    border: rgb(43, 79, 117) solid 1px;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: rgb(43, 79, 117);
+    }
+  }
+}
+
+.panelBtnCart {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 446px;
+  height: auto;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 0 1.5rem;
+
+  &__btn {
+    width: 190px;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    background: linear-gradient(
+      to top,
+      rgb(34, 70, 3) 30%,
+      rgb(45, 96, 4) 45%,
+      rgb(62, 127, 10) 60%,
+      rgb(142, 214, 25)
+    );
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__removeBtn {
+    background-color: transparent;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+  }
+
+  &__text {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 21px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgb(191, 255, 0);
+    text-shadow: 0 0 4px #000a;
+  }
+}
+
+@media (max-width: 36rem) {
+  .wrapperItems {
+    padding-top: 1rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .estimatedPrice {
+    max-width: 300px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .item {
+    grid-template-areas:
+      'img img'
+      'price quantity'
+      'remove remove';
+    grid-template-columns: repeat(2, 121px);
+    grid-template-rows: 60px 45px 35px;
+
+    &__quantity {
+      font-size: 1.2rem;
+      font-family: inherit;
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 23.5rem) {
+  .wrapperItems {
+    max-width: 100%;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+
+  .item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fig__img {
+    left: auto;
+    right: -22px;
+  }
+
+  .panelBtnCart {
+    gap: 1rem 0;
+  }
+}

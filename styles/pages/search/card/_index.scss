@@ -1,14 +1,18 @@
 @use '../../../consts/variables';
 
 .buyButton {
-  width: 200px;
+  max-width: 200px;
   margin-top: 1rem;
-  padding: 0.6rem;
+  padding: 0.6rem 1.4rem;
   background-color: #a48e29;
   border-style: none;
   border-radius: 6px;
   font-size: 1.4rem;
   cursor: pointer;
+
+  @media (max-width: 18.75rem) {
+    font-size: 1.2rem;
+  }
 }
 
 .cardInfo {
@@ -51,7 +55,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 945px) {
+  @media (max-width: 59rem) {
     & {
       grid-template-columns: 345px 1fr;
 
@@ -75,7 +79,7 @@
     }
   }
 
-  @media (max-width: 840px) {
+  @media (max-width: 52.5rem) {
     & {
       grid-template-columns: 1fr;
       grid-template-rows: -webkit-min-content 550px;
@@ -103,7 +107,7 @@
   &__section {
     padding: 0 3rem;
 
-    @media (max-width: 375px) {
+    @media (max-width: 23.5rem) {
       & {
         padding: 0 1rem;
       }
@@ -116,13 +120,13 @@
     align-items: center;
     gap: 0 1.2rem;
 
-    @media (max-width: 945px) {
+    @media (max-width: 59rem) {
       & {
         justify-content: center;
       }
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 52.5rem) {
       & {
         justify-content: center;
       }

@@ -6,16 +6,16 @@ $background-main: #202039;
 $background-header-footer: rgb(20, 20, 48);
 
 /* Header */
-$header-height: 48px;
+$header-height: 3.375rem;
 
 /* Footer */
 // $footer-height: 128px;
-$footer-height-1200: 80px;
+$footer-height-1200: 1.25rem;
 
 /* Main */
 $main-height: calc(100vh - ($header-height + $footer-height-1200));
-$padding-top: 2em;
+$padding-top: 2rem;
 
 /* Miscelanea */
-$top-image-form: 2em;
+$top-image-form: 2rem;
 $number-cards-home: 6;

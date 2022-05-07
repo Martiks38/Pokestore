@@ -1,7 +1,6 @@
 import { defaultSearch } from 'consts/configUrl'
 import { useRouter } from 'next/router'
-import { memo, useEffect } from 'react'
-import { FormEvent } from 'react'
+import { FormEvent, useEffect } from 'react'
 
 function SearchForm({ inHeader }: { inHeader?: boolean }) {
   const router = useRouter()
@@ -50,7 +49,11 @@ function SearchForm({ inHeader }: { inHeader?: boolean }) {
           type="search"
           name="search"
           placeholder="Search for a card"
-          autoFocus
+          autoFocus={
+            router.pathname === '/login' || router.pathname === '/cart/payment'
+              ? false
+              : true
+          }
           autoComplete="off"
         />
       </label>
@@ -58,4 +61,4 @@ function SearchForm({ inHeader }: { inHeader?: boolean }) {
   )
 }
 
-export default memo(SearchForm)
+export default SearchForm
