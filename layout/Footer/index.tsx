@@ -1,12 +1,5 @@
 function Footer() {
-  return (
-    <footer className="footer">
-      <em className="footer__notice">
-        This website is not produced, endorsed, supported, or affiliated with
-        Nintendo or The Pokémon Company.
-      </em>
-    </footer>
-  )
+  return <footer className="footer"></footer>
 }
 
 export default Footer

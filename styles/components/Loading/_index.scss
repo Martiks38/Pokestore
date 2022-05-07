@@ -1,0 +1,46 @@
+@use '../../consts/variables';
+
+.loading {
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+  border-radius: 50%;
+}
+
+.wrapperLoading,
+.wrapperPurchase {
+  display: grid;
+  place-content: center;
+}
+
+.wrapperLoading {
+  width: 15.625rem;
+  height: 15.625rem;
+  background: radial-gradient(
+    circle closest-side,
+    rgba(8, 65, 118) 4.6rem,
+    transparent
+  );
+  color: var(--color-white);
+}
+
+.wrapperPurchase {
+  height: variables.$main-height;
+}
+
+@media (min-width: 37.5rem) {
+  .loading {
+    width: 22rem;
+    height: auto;
+  }
+
+  .wrapperLoading {
+    width: 25rem;
+    height: 25rem;
+    background: radial-gradient(
+      circle closest-side,
+      rgba(8, 65, 118) 9.5rem,
+      transparent
+    );
+  }
+}

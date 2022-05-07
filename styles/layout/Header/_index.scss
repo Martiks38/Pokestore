@@ -52,25 +52,22 @@
     position: absolute;
     top: -2px;
     right: -11px;
-    display: grid;
-    place-content: center;
-    width: 20px;
-    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
     padding: 0.2rem;
-    background-color: rgb(206, 0, 48);
+    background-color: rgb(193, 13, 55);
     color: var(--color-white);
     border-radius: 50%;
     font-size: 1rem;
-    font-family: -apple-system, 'Segoe UI', Ubuntu, 'Open Sans',
-      'Helvetica Neue', sans-serif;
     font-weight: 600;
 
     &_twoDig,
     &_threeDig {
       top: 0;
       right: -13px;
-      width: 25px;
-      height: 25px;
     }
 
     &_threeDig {
@@ -123,7 +120,7 @@
     }
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 22rem) {
     & {
       top: variables.$header-height;
       right: 0;

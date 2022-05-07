@@ -3,6 +3,7 @@ import { shoppingInitialCart, shoppingReducer } from 'reducer/shopping'
 import { TYPES } from 'reducer/shopping/actions'
 import { CardItem } from 'interface/cardInCart'
 import { ShoppingContext } from 'interface/shoppingContext'
+import { exchangeRate } from 'consts/exchangeRate'
 
 export const ShoppingCtx = createContext<ShoppingContext | null>(null)
 
@@ -21,8 +22,7 @@ function ShoppingProvider({
   }, [])
 
   useEffect(() => {
-    if (state !== shoppingInitialCart)
-      localStorage.setItem('pokeStore', JSON.stringify(state))
+    localStorage.setItem('pokeStore', JSON.stringify(state))
   }, [state])
 
   const addToCart = ({ alt, id, price, src }: CardItem) => {
@@ -52,9 +52,25 @@ function ShoppingProvider({
     dispatch({ type: TYPES.TOGGLE_LOG })
   }
 
+  const amount: string = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: exchangeRate,
+  }).format(
+    state.products.reduce(
+      (prevPrice, currentPrice) => {
+        return {
+          price:
+            prevPrice.price +
+            parseFloat(currentPrice.price.slice(1)) * currentPrice.quantity,
+        }
+      },
+      { price: 0 }
+    ).price
+  )
+
   return (
     <ShoppingCtx.Provider
-      value={{ addToCart, clearCart, removeFromCart, state, toggleLog }}
+      value={{ addToCart, amount, clearCart, removeFromCart, state, toggleLog }}
     >
       {children}
     </ShoppingCtx.Provider>

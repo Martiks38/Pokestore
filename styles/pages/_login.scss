@@ -28,10 +28,10 @@
 
 .wrapperForm {
   background-color: #fbda42;
-  padding: 1rem 1.8rem;
+  padding: 1rem 3rem;
   border-radius: 6px;
 
-  @media (max-width: 475px) {
+  @media (max-width: 30rem) {
     & {
       width: 100%;
       min-width: 250px;
@@ -81,18 +81,22 @@
     border: none;
     padding: 0;
   }
+}
 
-  &__msg {
-    display: flex;
-    align-items: center;
-    height: 21px;
-    margin: 0.6rem 0 0.6rem 8px;
-    color: rgb(195 12 12);
-    font-weight: 700;
+.errorMsg {
+  display: flex;
+  align-items: center;
+  height: 21px;
+  margin: 0.6rem 0 0.6rem 8px;
+  color: rgb(195 12 12);
+  font-weight: 700;
 
-    &_hidden {
-      visibility: hidden;
-      opacity: 0;
-    }
+  &_hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &_payment {
+    color: rgb(253 141 141);
   }
 }

@@ -14,7 +14,7 @@ function CardInfo(props: { card: CardV2 }) {
 
   if (useRouter().isFallback) <h1>Loading...</h1>
 
-  const priceCard = getCardPrice(card, 'USD')
+  const priceCard = getCardPrice(card)
 
   return (
     <>

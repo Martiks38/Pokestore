@@ -1,7 +1,8 @@
+import { exchangeRate } from 'consts/exchangeRate'
 import { CardV2 } from 'interface/cardMarket'
 import { typeCard } from 'types/typeCard'
 
-const getCardPrice = (card: CardV2, currency: string) => {
+const getCardPrice = (card: CardV2) => {
   let price
 
   if (card?.tcgplayer) {
@@ -24,7 +25,7 @@ const getCardPrice = (card: CardV2, currency: string) => {
   return price
     ? new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency,
+        currency: exchangeRate,
       }).format(price)
     : 'OUT OF STOCK'
 }

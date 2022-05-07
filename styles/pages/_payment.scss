@@ -1,0 +1,122 @@
+@use '../consts/variables';
+
+.wrapperFormPayment {
+  display: grid;
+  place-items: center;
+  min-height: variables.$main-height;
+  padding: 1rem 2rem 2rem;
+}
+
+.formPayment {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  color: var(--color-white);
+
+  &__amount {
+    font-size: inherit;
+    margin-top: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    align-self: center;
+  }
+
+  &__label {
+    width: 180px;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__legend {
+    font-weight: 700;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__input {
+    max-width: 250px;
+    min-width: 150px;
+    padding: 0.4rem;
+    border: #2f917c solid 3px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+
+    &:focus {
+      border-color: #43e1bf;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &_date {
+      width: 55px;
+    }
+  }
+
+  &__select {
+    width: 180px;
+    padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+    border: #2f917c solid 3px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: inherit;
+  }
+
+  &__separator {
+    display: inline-block;
+    margin: 0 0.6rem;
+    font-size: 1.4rem;
+  }
+}
+
+.wrapperInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.expiration {
+  width: 180px;
+
+  &__month,
+  &__year {
+    padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    border: #2f917c solid 3px;
+  }
+}
+
+@media (max-width: 37.5rem) {
+  .wrapperFormPayment {
+    place-items: center;
+  }
+
+  .formPayment {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+  }
+}
