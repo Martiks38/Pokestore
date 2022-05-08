@@ -164,12 +164,9 @@ function FormProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
       }
     }
 
-    debugger
     let okayDate =
       month.value < new Date().getMonth() &&
       !(year.value < new Date().getFullYear())
-
-    console.log(okayDate)
 
     if (okayDate) {
       dispatch({

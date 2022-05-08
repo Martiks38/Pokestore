@@ -3,6 +3,14 @@
 .cardsHome {
   position: relative;
   width: 100%;
+  top: -18rem;
+  margin-top: auto;
+
+  @media only screen and (orientation: landscape) and (max-height: 40.625rem) {
+    & {
+      visibility: hidden;
+    }
+  }
 
   &__card {
     position: absolute;
@@ -33,7 +41,7 @@
     }
 
     &_3 {
-      bottom: -36.25rem;
+      bottom: -32.25rem;
       left: -18.75rem;
     }
 

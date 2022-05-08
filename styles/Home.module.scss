@@ -1,6 +1,8 @@
 @use './consts/variables';
 
 .container {
+  display: flex;
+  flex-direction: column;
   height: variables.$main-height;
   max-width: 800px;
   min-width: 250px;
