@@ -9,21 +9,19 @@ import { CardV2 } from 'interface/cardMarket'
 import UpButton from 'components/UpButton'
 import ListCards from 'components/ListCards'
 import PlaceholderCards from 'components/PlaceholderCards'
+import Head from 'next/head'
+import { errors } from 'interface/errorsResults'
 
 const pageSize = 30
-
-interface errors {
-  status: number
-  statusText: string
-}
 
 export default function SearchPage(props: {
   cards?: CardV2[]
   errors?: errors
+  number: string
 }) {
   const [viewSearch, setViewSearch] = useState(false)
 
-  const { cards } = props
+  const { cards, number } = props
 
   const handleViewSearch = useCallback(() => {
     const isNarrow = window.innerWidth < 550
@@ -42,6 +40,35 @@ export default function SearchPage(props: {
 
   return (
     <>
+      <Head>
+        <title>Page {number} | Pokestore</title>
+        <meta name="description" content={`Page number ${number}.`} />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#202039" />
+      </Head>
       {props?.cards && (
         <>
           <div className="resultsSearch">
@@ -104,6 +131,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
           status: cards.status,
           statusText: cards.statusText,
         },
+        number,
       },
     }
   }
@@ -111,6 +139,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       cards,
+      number,
     },
   }
 }
