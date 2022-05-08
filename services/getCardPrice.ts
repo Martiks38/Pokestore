@@ -5,13 +5,13 @@ import { typeCard } from 'types/typeCard'
 const getCardPrice = (card: CardV2) => {
   let price
 
-  if (card?.tcgplayer) {
+  if (card?.tcgplayer?.prices) {
     const typeCard = Object.keys(card.tcgplayer.prices)[0] as typeCard
     const pricesList = card.tcgplayer.prices[typeCard]
 
     // To ensure that it shows at least one value, the first one in the list will be taken
     price = pricesList.market ?? pricesList.mid ?? Object.values(pricesList)[0]
-  } else if (card?.cardmarket) {
+  } else if (card?.cardmarket?.prices) {
     const pricesList = card.cardmarket.prices
 
     // To ensure that it shows at least one value, the first one in the list will be taken
