@@ -6,13 +6,14 @@ import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
 import { apiUrl } from 'consts/configUrl'
 import { CardV2 } from 'interface/cardMarket'
+import PlaceholderCards from 'components/PlaceholderCards'
 
 function CardInfo(props: { card: CardV2 }) {
   const { card } = props
 
   const { addToCart } = useShopping()
 
-  if (useRouter().isFallback) <h1>Loading...</h1>
+  if (useRouter().isFallback) return <PlaceholderCards />
 
   const priceCard = getCardPrice(card)
 

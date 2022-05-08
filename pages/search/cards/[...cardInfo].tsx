@@ -8,6 +8,7 @@ import { apiUrl } from 'consts/configUrl'
 import { CardV2 } from 'interface/cardMarket'
 import UpButton from 'components/UpButton'
 import ListCards from 'components/ListCards'
+import PlaceholderCards from 'components/PlaceholderCards'
 
 const pageSize = 25 // Number of cards per page
 
@@ -30,7 +31,7 @@ export default function SearchCardName(props: { cards: CardV2[] }) {
     return () => window.removeEventListener('resize', handleViewSearch)
   }, [handleViewSearch])
 
-  if (useRouter().isFallback) return <h1>Loading...</h1>
+  if (useRouter().isFallback) return <PlaceholderCards />
 
   return (
     <>
