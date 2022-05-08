@@ -12,7 +12,15 @@ import PlaceholderCards from 'components/PlaceholderCards'
 
 const pageSize = 30
 
-export default function SearchPage(props: { cards: CardV2[] }) {
+interface errors {
+  status: number
+  statusText: string
+}
+
+export default function SearchPage(props: {
+  cards?: CardV2[]
+  errors?: errors
+}) {
   const [viewSearch, setViewSearch] = useState(false)
 
   const { cards } = props
@@ -34,18 +42,41 @@ export default function SearchPage(props: { cards: CardV2[] }) {
 
   return (
     <>
-      <div className="resultsSearch">
-        {viewSearch && (
-          <div className="resultsSearch__form">
-            <SearchForm />
+      {props?.cards && (
+        <>
+          <div className="resultsSearch">
+            {viewSearch && (
+              <div className="resultsSearch__form">
+                <SearchForm />
+              </div>
+            )}
+            <div className="resultsSearch__results">
+              <ListCards cards={cards} />
+            </div>
+            <NavPanelBtn
+              isEnd={cards.length < pageSize}
+              pathname="/search/page"
+            />
           </div>
-        )}
-        <div className="resultsSearch__results">
-          <ListCards cards={cards} />
-        </div>
-        <NavPanelBtn isEnd={cards.length < pageSize} pathname="/search/page" />
-      </div>
-      <UpButton />
+          <UpButton />
+        </>
+      )}
+      {props?.errors && (
+        <>
+          <figure className="resultsSearch resultsSearch_error">
+            <img
+              src="/error404.webp"
+              alt="error"
+              className="resultsSearch__imgError"
+            />
+            <figcaption>
+              <p className="resultsSearch__textError">
+                Error {props.errors.status} {props.errors.statusText}
+              </p>
+            </figcaption>
+          </figure>
+        </>
+      )}
     </>
   )
 }
@@ -65,6 +96,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const url = `${apiUrl}/cards/${paramsV2}`
 
   const cards = await Promise.resolve(getCards(url))
+
+  if (cards?.status < 200 || cards?.status > 299) {
+    return {
+      props: {
+        errors: {
+          status: cards.status,
+          statusText: cards.statusText,
+        },
+      },
+    }
+  }
 
   return {
     props: {

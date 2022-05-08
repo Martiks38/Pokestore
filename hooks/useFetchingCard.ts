@@ -4,10 +4,8 @@ import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
 import { apiUrl } from 'consts/configUrl'
 
 interface error {
-  error: {
-    message: string
-    code: number
-  }
+  data: string
+  status: number
 }
 
 function useFetchingCard(resource: string, params?: string) {
@@ -34,8 +32,11 @@ function useFetchingCard(resource: string, params?: string) {
         setCards(data)
       })
       .catch((error) => {
-        let errorData = error.response.data
-        setCards(errorData)
+        const { data, status } = error
+        setCards({
+          data: data?.error.messsage || 'An error has occurred.',
+          status,
+        })
       })
   }, [url, POKEMONTCG_API_KEY])
 

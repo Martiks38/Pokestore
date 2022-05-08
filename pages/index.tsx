@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         <title>Home</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preload" href="https://api.pokemontcg.io" />
+        <link rel="preconnect" href="https://api.pokemontcg.io" />
       </Head>
       <div className={styles.container}>
         <div className={styles.wrapper}>

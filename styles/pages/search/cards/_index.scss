@@ -17,4 +17,21 @@
     justify-content: center;
     gap: 2rem;
   }
+
+  &_error {
+    justify-content: center;
+    margin: 0;
+  }
+
+  &__imgError {
+    max-width: 21.88rem;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  &__textError {
+    text-align: center;
+    color: var(--color-white);
+    font-size: 2rem;
+  }
 }
