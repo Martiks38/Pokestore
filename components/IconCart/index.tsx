@@ -5,13 +5,9 @@ function IconCart() {
   const { shoppingState } = useShopping()
 
   const numberItems = shoppingState.products.reduce(
-    (prevValue, currentValue) => {
-      return {
-        quantity: prevValue.quantity + currentValue.quantity,
-      }
-    },
-    { quantity: 0 }
-  ).quantity
+    (prevValue, currentValue) => prevValue + currentValue.quantity,
+    0
+  )
 
   return (
     <Link href="/cart">

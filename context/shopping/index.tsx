@@ -57,15 +57,11 @@ function ShoppingProvider({
     currency: exchangeRate,
   }).format(
     state.products.reduce(
-      (prevPrice, currentPrice) => {
-        return {
-          price:
-            prevPrice.price +
-            parseFloat(currentPrice.price.slice(1)) * currentPrice.quantity,
-        }
-      },
-      { price: 0 }
-    ).price
+      (prevPrice, currentPrice) =>
+        prevPrice +
+        parseFloat(currentPrice.price.slice(1)) * currentPrice.quantity,
+      0
+    )
   )
 
   return (
