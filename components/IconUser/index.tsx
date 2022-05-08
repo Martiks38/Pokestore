@@ -1,6 +1,7 @@
-import useShopping from 'hooks/useShopping'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import useShopping from 'hooks/useShopping'
+import { $ } from 'utils/querySelector'
 
 function IconUser() {
   const [viewUserMenu, setViewUserMenu] = useState(false)
@@ -8,7 +9,30 @@ function IconUser() {
 
   const handleToggleUserMenu = () => {
     setViewUserMenu(!viewUserMenu)
+    console.log(!viewUserMenu)
   }
+
+  const toggleUserMenu = useCallback(
+    (event: MouseEvent) => {
+      const userIcon = $('.userIcon__img')
+      const optionLogInOut = $('.userMenu__item')
+
+      if (
+        viewUserMenu &&
+        !(event.target === userIcon || event.target === optionLogInOut)
+      ) {
+        setViewUserMenu(false)
+      }
+    },
+    [viewUserMenu]
+  )
+
+  useEffect(() => {
+    window.addEventListener('click', toggleUserMenu)
+
+    return () => window.removeEventListener('click', toggleUserMenu)
+  }, [toggleUserMenu])
+
   return (
     <>
       <button className="userIcon" onClick={handleToggleUserMenu}>
