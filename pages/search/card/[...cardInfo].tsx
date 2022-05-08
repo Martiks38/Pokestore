@@ -7,8 +7,10 @@ import getCards from 'services/getCards'
 import { apiUrl } from 'consts/configUrl'
 import { CardV2 } from 'interface/cardMarket'
 import PlaceholderCards from 'components/PlaceholderCards'
+import Head from 'next/head'
+import { errors } from 'interface/errorsResults'
 
-function CardInfo(props: { card: CardV2 }) {
+function CardInfo(props: { card: CardV2; errors: errors }) {
   const { card } = props
 
   const { addToCart } = useShopping()
@@ -19,6 +21,38 @@ function CardInfo(props: { card: CardV2 }) {
 
   return (
     <>
+      <Head>
+        <title>{card.name} | Pokestore</title>
+        <meta
+          name="description"
+          content={`${card.name}'s letter from the ${card.set.name} set.`}
+        />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#202039" />
+      </Head>
       {card && (
         <div
           className={
@@ -116,6 +150,22 @@ function CardInfo(props: { card: CardV2 }) {
           </article>
         </div>
       )}
+      {props?.errors && (
+        <>
+          <figure className="resultsSearch resultsSearch_error">
+            <img
+              src="/error404.webp"
+              alt="error"
+              className="resultsSearch__imgError"
+            />
+            <figcaption>
+              <p className="resultsSearch__textError">
+                Error {props.errors.status} {props.errors.statusText}
+              </p>
+            </figcaption>
+          </figure>
+        </>
+      )}
     </>
   )
 }
@@ -134,6 +184,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const url = `${apiUrl}/cards/${id}`
 
   const card = await Promise.resolve(getCards(url))
+
+  if (card?.status < 200 || card?.status > 299) {
+    return {
+      props: {
+        errors: {
+          status: card.status,
+          statusText: card.statusText,
+        },
+      },
+    }
+  }
 
   return {
     props: {

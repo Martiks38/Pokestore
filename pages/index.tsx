@@ -26,10 +26,54 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
-        <meta name="description" content="" />
+        <title>Home | Pokestore</title>
+        <meta
+          name="description"
+          content="Buy Pokémon cards with Free Shipping. Find cards from all sets at incredible prices."
+        />
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta property="og:title" content="Home | Pokestore" />
+        <meta property="og:image" content="" />
+        <meta
+          property="og:description"
+          content="Buy Pokémon cards with Free Shipping. Find cards from all sets at incredible prices."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary"></meta>
+        <meta property="twitter:title" content="Home | Pokestore" />
+        <meta property="twitter:image" content="" />
+        <meta
+          property="twitter:description"
+          content="Buy Pokémon cards with Free Shipping. Find cards from all sets at incredible prices."
+        />
+        <meta property="twitter:site" content="@Pokestore" />
+        <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://api.pokemontcg.io" />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#202039" />
       </Head>
       <div className={styles.container}>
         <div className={styles.wrapper}>
