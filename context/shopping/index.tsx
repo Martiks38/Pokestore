@@ -48,6 +48,10 @@ function ShoppingProvider({
     dispatch({ type: TYPES.CLEAR_CART })
   }
 
+  const expired = () => {
+    dispatch({ type: TYPES.EXPIRED })
+  }
+
   const toggleLog = () => {
     dispatch({ type: TYPES.TOGGLE_LOG })
   }
@@ -66,7 +70,15 @@ function ShoppingProvider({
 
   return (
     <ShoppingCtx.Provider
-      value={{ addToCart, amount, clearCart, removeFromCart, state, toggleLog }}
+      value={{
+        addToCart,
+        amount,
+        clearCart,
+        expired,
+        removeFromCart,
+        state,
+        toggleLog,
+      }}
     >
       {children}
     </ShoppingCtx.Provider>
