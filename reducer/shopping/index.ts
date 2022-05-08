@@ -5,6 +5,7 @@ import { ShoppingAction } from 'interface/shoppingAction'
 export const shoppingInitialCart: InitialUserCart = {
   products: [],
   isConnected: false,
+  maxAge: undefined,
 }
 
 export function shoppingReducer(
@@ -29,10 +30,18 @@ export function shoppingReducer(
           )
         : [...state.products, { ...action.payload.cardItem, quantity: 1 }]
 
-      return {
-        ...state,
-        products,
-      }
+      let maxAge = 2 * 60 * 60 * 1000 + Date.now()
+
+      return state.products.length === 0
+        ? {
+            ...state,
+            products,
+            maxAge,
+          }
+        : {
+            ...state,
+            products,
+          }
     }
 
     case TYPES.CLEAR_CART: {
@@ -77,6 +86,15 @@ export function shoppingReducer(
       return {
         ...state,
         isConnected: !state.isConnected,
+      }
+    }
+
+    case TYPES.EXPIRED: {
+      let { products, maxAge } = shoppingInitialCart
+      return {
+        ...state,
+        products,
+        maxAge,
       }
     }
 
