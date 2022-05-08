@@ -50,7 +50,7 @@ function Payment() {
                 className={
                   cardNumber.error && cardNumber.hasError
                     ? `errorMsg errorMsg_payment`
-                    : `errorMsg_hidden`
+                    : `errorMsg errorMsg_hidden`
                 }
               >
                 {cardNumber.error}
@@ -105,7 +105,7 @@ function Payment() {
               <input
                 type="text"
                 className="formPayment__input"
-                name="name"
+                name="Name"
                 placeholder="Oliver"
                 pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
                 onBlur={handleBlur}

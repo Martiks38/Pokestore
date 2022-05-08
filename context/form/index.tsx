@@ -20,61 +20,61 @@ const validateFormFields: {
 } = {
   card: (value: string) => {
     return creditCards.includes(value)
-      ? { value }
-      : { value, error: 'It is not a valid card', hasError: true }
+      ? { value, error: '', hasError: false }
+      : { value, error: "It isn't a valid card", hasError: true }
   },
   cardNumber: (value: string) => {
     return /[0-9]{14,19}/.test(value)
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid card number', hasError: true }
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid card number", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
   email: (value: string) => {
     return /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/.test(
       value
     )
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid email', hasError: true }
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid email", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
   month: (value: string) => {
-    return parseInt(value) < 13 || parseInt(value) > 0
-      ? { value }
-      : { value, error: 'It is not a valid month', hasError: true }
+    return value
+      ? { value, error: '', hasError: false }
+      : { value, error: 'Required', hasError: true }
   },
-  name: (value: string) => {
+  Name: (value: string) => {
     return /^[a-zñáéíóúü'\s]+$/gi.test(value)
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid name', hasError: true }
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid name", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
   password: (value: string) => {
     return /^.{6,18}$/.test(value)
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid password', hasError: true }
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid password", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
   surname: (value: string) => {
-    return /^[a-zñáéíóúü'\s]+$/gi.test(value.trim())
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid surname', hasError: true }
+    return /^[a-zñáéíóúü'\s]+$/gi.test(value)
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid surname", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
   year: (value: string) => {
     return years.includes(parseInt(value))
-      ? { value }
+      ? { value, error: '', hasError: false }
       : { value, error: 'Required', hasError: true }
   },
   zipCode: (value: string) => {
     return /^[0-9]{4,9}$/.test(value)
-      ? { value }
-      : value.trim()
-      ? { value, error: 'It is not a valid postcode', hasError: true }
+      ? { value, error: '', hasError: false }
+      : value
+      ? { value, error: "It isn't a valid postcode", hasError: true }
       : { value, error: 'Required', hasError: true }
   },
 }
@@ -137,18 +137,52 @@ function FormProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
 
     let hasError: boolean = false
 
-    let formPayment = Object.entries(state).filter(
-      (key) => !(key[0] === 'email' || key[0] === 'password')
-    )
+    let { card, cardNumber, Name, month, surname, year, zipCode } =
+      event.currentTarget
 
-    formPayment.forEach((field) => handleValidation(field[0], field[1].value))
+    let formState = {
+      card: card.value,
+      cardNumber: cardNumber.value,
+      Name: Name.value,
+      month: month.value,
+      surname: surname.value,
+      year: year.value,
+      zipCode: zipCode.value,
+    }
+    let entriesForm = Object.entries(formState)
 
-    let values: FormFields[] = formPayment.map((field) => field[1])
-    console.log('hi')
-    for (let value in values) {
-      // if (value.hasError) {
-      //   hasError = true
-      // }
+    entriesForm.forEach((field) => {
+      handleValidation(field[0], field[1])
+    })
+
+    let values: FormFields[] = entriesForm.map((field) => field[1])
+
+    for (let value of values) {
+      if (value.hasError) {
+        hasError = true
+        break
+      }
+    }
+
+    debugger
+    let okayDate =
+      month.value < new Date().getMonth() &&
+      !(year.value < new Date().getFullYear())
+
+    console.log(okayDate)
+
+    if (okayDate) {
+      dispatch({
+        type: FORM_TYPES.HANDLECHANGE,
+        payload: {
+          month: {
+            value: month.value,
+            error: "It isn't a valid date",
+            hasError: true,
+          },
+        },
+      })
+      return
     }
 
     if (!hasError) {
