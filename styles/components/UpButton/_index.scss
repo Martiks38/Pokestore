@@ -1,0 +1,38 @@
+.upButton {
+  position: fixed;
+  right: 2rem;
+  bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(83, 159, 20);
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    width: 1.5625rem;
+    height: 1.125rem;
+    -webkit-clip-path: polygon(
+      0 1.125rem,
+      5px 1.125rem,
+      0.78rem 0.5rem,
+      1.25rem 1.125rem,
+      1.5625rem 1.125rem,
+      0.78rem 0
+    );
+    clip-path: polygon(
+      0 1.125rem,
+      0.5rem 1.125rem,
+      0.78rem 0.75rem,
+      17px 1.125rem,
+      1.5625rem 1.125rem,
+      0.78rem 0
+    );
+    background-color: var(--color-black);
+  }
+}

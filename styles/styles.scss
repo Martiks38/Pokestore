@@ -1,8 +1,11 @@
-@use './layout';
 @use './consts/variables' as c;
+@use './components';
+@use './layout';
+@use './pages';
 
 :root {
   --color-black: #{c.$color-black};
+  --color-grey: #{c.$color-grey};
   --color-white: #{c.$color-white};
   --background-main: #{c.$background-main};
   --background-header-footer: #{c.$background-header-footer};
@@ -16,19 +19,30 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    & {
+      scroll-behavior: auto;
+    }
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: auto;
-  width: c.$header-height - 16px;
-  margin-left: 2em;
+  width: c.$header-height - 1rem;
 }

@@ -1,0 +1,45 @@
+@use '../../consts/variables';
+
+.modalCart {
+  background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  top: variables.$header-height;
+  left: 0;
+  height: calc(100vh - variables.$header-height);
+  width: 100%;
+  padding: 2rem 1rem 1.2rem;
+  text-align: center;
+
+  &__msg {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    padding: 0 1rem 1rem;
+    max-width: 230px;
+    margin: 0 auto;
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--color-white);
+    background: linear-gradient(
+      to top,
+      rgb(29, 45, 63) 20%,
+      rgb(50, 83, 118) 80%,
+      rgb(64, 110, 160) 90%
+    );
+    border: rgb(61, 60, 60) solid 2px;
+  }
+
+  &__text {
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__log {
+    &:hover {
+      padding: 0.5rem 1.4rem;
+      background-color: rgb(50, 83, 118);
+      border-radius: 6px;
+    }
+  }
+}

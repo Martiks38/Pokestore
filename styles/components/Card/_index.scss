@@ -1,0 +1,17 @@
+@use '../../consts/list';
+
+.card {
+  width: 100%;
+  height: 275px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@each $type, $color in list.$listTypes {
+  .hover#{$type} {
+    &:hover {
+      -webkit-filter: drop-shadow(0 0 4px);
+      filter: drop-shadow(0 0 8px #{$color});
+    }
+  }
+}

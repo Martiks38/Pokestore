@@ -1,0 +1,22 @@
+.panelBtn {
+  display: flex;
+  justify-self: center;
+  padding-top: 2em;
+  gap: 1em;
+}
+
+.navBtn {
+  width: 75px;
+  background-color: #615623;
+  padding: 0.5em;
+  color: var(--color-white);
+  border-style: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #38341f;
+    cursor: not-allowed;
+  }
+}
