@@ -9,7 +9,6 @@ function IconUser() {
 
   const handleToggleUserMenu = () => {
     setViewUserMenu(!viewUserMenu)
-    console.log(!viewUserMenu)
   }
 
   const toggleUserMenu = useCallback(
