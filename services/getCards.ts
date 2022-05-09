@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosError, AxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 
 async function getCards(url: string) {
   const POKEMONTCG_API_KEY = process.env.POKEMON_API_KEY // Your private api key

@@ -1,5 +1,5 @@
-import useShopping from 'hooks/useShopping'
 import Link from 'next/link'
+import useShopping from 'hooks/useShopping'
 
 function IconCart() {
   const { shoppingState } = useShopping()

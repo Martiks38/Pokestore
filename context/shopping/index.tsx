@@ -1,9 +1,9 @@
 import { createContext, useEffect, useReducer } from 'react'
 import { shoppingInitialCart, shoppingReducer } from 'reducer/shopping'
 import { TYPES } from 'reducer/shopping/actions'
+import { exchangeRate } from 'consts/exchangeRate'
 import { CardItem } from 'interface/cardInCart'
 import { ShoppingContext } from 'interface/shoppingContext'
-import { exchangeRate } from 'consts/exchangeRate'
 
 export const ShoppingCtx = createContext<ShoppingContext | null>(null)
 

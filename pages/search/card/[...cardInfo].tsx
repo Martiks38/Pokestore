@@ -1,13 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import useShopping from 'hooks/useShopping'
+import PlaceholderCards from 'components/PlaceholderCards'
 import getCardPrice from 'services/getCardPrice'
 import getCards from 'services/getCards'
 import { apiUrl } from 'consts/configUrl'
 import { CardV2 } from 'interface/cardMarket'
-import PlaceholderCards from 'components/PlaceholderCards'
-import Head from 'next/head'
 import { errors } from 'interface/errorsResults'
 
 function CardInfo(props: { card: CardV2; errors: errors }) {

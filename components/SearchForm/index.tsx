@@ -1,6 +1,6 @@
-import { defaultSearch } from 'consts/configUrl'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect } from 'react'
+import { defaultSearch } from 'consts/configUrl'
 
 function SearchForm({ inHeader }: { inHeader?: boolean }) {
   const router = useRouter()

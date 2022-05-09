@@ -1,8 +1,8 @@
+import Head from 'next/head'
 import useForm from 'hooks/useForm'
 import useShopping from 'hooks/useShopping'
 import { creditCards } from 'consts/creditCard'
 import { months, years } from 'consts/selecPayment'
-import Head from 'next/head'
 
 function Payment() {
   const { amount } = useShopping()

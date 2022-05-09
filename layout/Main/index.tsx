@@ -1,5 +1,5 @@
-import useShopping from 'hooks/useShopping'
 import { useEffect } from 'react'
+import useShopping from 'hooks/useShopping'
 
 function Main({ children }: { children: JSX.Element | JSX.Element[] }) {
   const { expired, shoppingState } = useShopping()

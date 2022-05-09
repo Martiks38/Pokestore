@@ -1,7 +1,7 @@
-import { InitialUserCart } from 'interface/cart'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { InitialUserCart } from 'interface/cart'
 
 function Modal({ shoppingState }: { shoppingState: InitialUserCart }) {
   const [viewMsg, setViewMsg] = useState(false)

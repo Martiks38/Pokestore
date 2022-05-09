@@ -1,10 +1,10 @@
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useCallback, useEffect, useState } from 'react'
 import CardsInHome from 'components/CardsInHome'
 import Img from 'components/Imgs'
 import SearchForm from 'components/SearchForm'
 import styles from '../styles/Home.module.scss'
-import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
   const [viewImages, setViewImages] = useState(true)

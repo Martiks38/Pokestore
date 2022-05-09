@@ -1,10 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import SearchForm from 'components/SearchForm'
-import Image from 'next/image'
 import IconUser from 'components/IconUser'
 import IconCart from 'components/IconCart'
+import { $ } from 'utils/querySelector'
 
 function Header() {
   const [viewSearchHeader, setviewSearchHeader] = useState(false)
@@ -14,7 +15,7 @@ function Header() {
   const handleViewSearchHeader = useCallback(() => {
     const isNarrow = window.innerWidth < 550
     const outHome = router.pathname !== '/'
-    const $headerWrapper = document.querySelector('.header__wrapper')
+    const $headerWrapper = $('.header__wrapper')
 
     if (outHome && !isNarrow) {
       setviewSearchHeader(true)

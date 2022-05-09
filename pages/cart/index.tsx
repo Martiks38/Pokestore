@@ -1,9 +1,9 @@
+import Head from 'next/head'
 import Link from 'next/link'
 import useShopping from 'hooks/useShopping'
 import UpButton from 'components/UpButton'
 import ListItemDescription from 'components/ListItemDescription'
 import Modal from 'components/Modal'
-import Head from 'next/head'
 
 function Cart() {
   const { amount, clearCart, shoppingState } = useShopping()

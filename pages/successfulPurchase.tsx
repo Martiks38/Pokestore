@@ -1,7 +1,7 @@
-import ShoppingImage from 'components/ShoppingImage'
-import useShopping from 'hooks/useShopping'
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
+import ShoppingImage from 'components/ShoppingImage'
+import useShopping from 'hooks/useShopping'
 
 function SuccessfulPurchase() {
   const [process, setProcess] = useState(true)

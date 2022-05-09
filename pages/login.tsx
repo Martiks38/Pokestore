@@ -1,6 +1,6 @@
+import Head from 'next/head'
 import Image from 'next/image'
 import useForm from 'hooks/useForm'
-import Head from 'next/head'
 
 function Login() {
   const { formState, handleBlur, handleChange, handleSubmit } = useForm()

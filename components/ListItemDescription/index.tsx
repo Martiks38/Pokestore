@@ -1,5 +1,5 @@
-import useShopping from 'hooks/useShopping'
 import ItemDescription from 'components/ItemDesciption'
+import useShopping from 'hooks/useShopping'
 
 function ListItemDescription() {
   const { removeFromCart, shoppingState } = useShopping()

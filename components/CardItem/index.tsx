@@ -1,7 +1,7 @@
+import Link from 'next/link'
 import Card from 'components/Card'
 import useShopping from 'hooks/useShopping'
 import { CardDisplay } from 'interface/cardData'
-import Link from 'next/link'
 
 function CardItem({
   alt,

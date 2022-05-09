@@ -1,11 +1,11 @@
-import { creditCards } from 'consts/creditCard'
-import { years } from 'consts/selecPayment'
-import useShopping from 'hooks/useShopping'
-import { FormFields, InitialForm } from 'interface/form'
 import { useRouter } from 'next/router'
 import { createContext, useEffect, useReducer } from 'react'
+import useShopping from 'hooks/useShopping'
 import { formReducer, InitialStateForm } from 'reducer/form'
 import { FORM_TYPES } from 'reducer/form/action'
+import { creditCards } from 'consts/creditCard'
+import { years } from 'consts/selecPayment'
+import { FormFields, InitialForm } from 'interface/form'
 import type { eventChange, eventFocus, eventSubmit } from 'types/events'
 
 interface FormContext {
