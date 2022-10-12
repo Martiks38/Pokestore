@@ -164,11 +164,11 @@ function FormProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
       }
     }
 
-    let okayDate =
-      month.value < new Date().getMonth() &&
-      !(year.value < new Date().getFullYear())
+    let notOkayDate =
+      month.value <= new Date().getMonth() &&
+      year.value <= new Date().getFullYear()
 
-    if (okayDate) {
+    if (notOkayDate) {
       dispatch({
         type: FORM_TYPES.HANDLECHANGE,
         payload: {
