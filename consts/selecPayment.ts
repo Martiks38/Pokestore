@@ -5,7 +5,7 @@ export let months: number[] = Array(12)
   .map(() => month++)
 
 const MIN_YEAR = new Date().getFullYear()
-const MAX_YEAR = 2099
+const MAX_YEAR = new Date().getFullYear() + 100
 
 let year = MIN_YEAR
 export const years: number[] = Array(MAX_YEAR - MIN_YEAR)
